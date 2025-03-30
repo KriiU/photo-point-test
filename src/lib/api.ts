@@ -5,6 +5,10 @@ export async function getProducts(): Promise<Product[]> {
     next: { revalidate: 60 }
   })
 
-  if (!res.ok) throw new Error('Ошибка загрузки товаров')
+  const contentType = res.headers.get('content-type') || ''
+  if (!res.ok || !contentType.includes('application/json')) {
+    throw new Error(`Ошибка загрузки: ${res.status}, тип: ${contentType}`)
+  }
+
   return res.json()
 }
