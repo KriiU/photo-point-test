@@ -1,11 +1,7 @@
 import { Product } from '@/types/product'
 
 export async function getProducts(): Promise<Product[]> {
-  // const res = await fetch('https://fakestoreapi.com/products', {
-  //   next: { revalidate: 60 }
-  // })
-
-  const res = await fetch('https://fakestoreapi.com/pro', {
+  const res = await fetch('https://fakestoreapi.com/products', {
     next: { revalidate: 60 }
   })
 
